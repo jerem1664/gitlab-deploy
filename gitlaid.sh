@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-GITPASS=`/usr/bin/openssl rand -base64 12`
+GITPASS=`/usr/bin/tr -cd '[:alnum:]' < /dev/urandom | /usr/bin/fold -w16 | /usr/bin/head -n1`
 GITURL="http://$HOSTNAME-$VMID.one.ippon-hosting.net"
 GITUSER="geebay"
 GITUSERMAIL="jbarron@ippon.fr"
@@ -29,9 +29,9 @@ GITPROJECT="myproject"
 # Launch conf
 /usr/bin/gitlab-ctl reconfigure
 if [ $? == 0 ] ; then
-    echo "Done"
+    GITSTATE="Install OK"
 else
-    echo "Something goes wrong"
+    GITSTATE="Something goes wrong"
 fi
 
 
@@ -48,6 +48,10 @@ GITLAB_TOKEN=`/usr/bin/curl http://localhost/api/v3/session --data "login=root&p
 /usr/bin/curl --header "PRIVATE-TOKEN: $GITLAB_TOKEN" --data "name=$GITPROJECT&owned=$GITGROUP&namespace_id=3" "http://localhost/api/v3/projects"
 
 
-# Send Token to ActiveMQ
+# Send info to ActiveMQ
 
-/usr/bin/curl -XPOST -d "body=TOKEN=$GITLAB_TOKEN,gitlabstate=Install_OK" http://admin:admin@10.0.45.30:8161/api/message?destination=queue://SO.FACT
+/usr/bin/curl -XPOST -d "body={TOKEN:$GITLAB_TOKEN,GITROOTPASS:$GITPASS,GITLABSTATE:$GITSTATE}" http://admin:admin@10.0.45.30:8161/api/message?destination=queue://SO.FACT
+
+
+# Clean
+# rm -f /etc/gitlab/gitlab.rb
