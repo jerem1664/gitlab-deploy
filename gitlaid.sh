@@ -24,6 +24,9 @@ GITPROJECT="$PROJECT"
 /usr/bin/wget http://jerem.unvrai.info/share/gitlab.rb -O /etc/gitlab/gitlab.rb
 /bin/sed -i "s,GITURL,"$GITURL"," /etc/gitlab/gitlab.rb
 /bin/sed -i "s,GITPASS,"$GITPASS"," /etc/gitlab/gitlab.rb
+/bin/sed -i "s,GITUSERMAIL,"$GITUSERMAIL",g" /etc/gitlab/gitlab.rb
+/bin/sed -i "s,GITUSER,"$GITUSER"," /etc/gitlab/gitlab.rb
+/bin/sed -i "s,GITPROJECT,"$GITPROJECT"," /etc/gitlab/gitlab.rb
 
 
 # Launch conf
