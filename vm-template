@@ -1,6 +1,6 @@
 CREATE_AS = [jbarron]
 NEW_VM=[
-    TEMPLATE_ID=96,
+    TEMPLATE_ID=99,
     NAME=test-gitlab-jerem,
     EXTRA_ATTRIBUTES=[
         MEMORY=4096,
