@@ -1,0 +1,11 @@
+CREATE_AS = [jbarron]
+NEW_VM=[
+    TEMPLATE_ID=96,
+    NAME=test-gitlab-jerem,
+    EXTRA_ATTRIBUTES=[
+        MEMORY=4096,
+        VCPU=4,
+        DISK=[IMAGE_ID = 213, SIZE = 20480],
+        NIC=[NETWORK_ID = 76]
+        ]
+]
