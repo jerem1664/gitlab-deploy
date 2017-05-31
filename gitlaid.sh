@@ -50,4 +50,4 @@ GITLAB_TOKEN=`/usr/bin/curl http://localhost/api/v3/session --data "login=root&p
 
 # Send Token to ActiveMQ
 
-/usr/bin/curl -XPOST -d "body=TOKEN=$GITLAB_TOKEN,petitmessage=coucou" http://admin:admin@10.0.45.30:8161/api/message?destination=queue://SO.FACT
+/usr/bin/curl -XPOST -d "body=TOKEN=$GITLAB_TOKEN,gitlabstate=Install_OK" http://admin:admin@10.0.45.30:8161/api/message?destination=queue://SO.FACT
