@@ -2,10 +2,10 @@
 
 GITPASS=`/usr/bin/tr -cd '[:alnum:]' < /dev/urandom | /usr/bin/fold -w16 | /usr/bin/head -n1`
 GITURL="http://$HOSTNAME-$VMID.one.ippon-hosting.net"
-GITUSER="geebay"
-GITUSERMAIL="jbarron@ippon.fr"
-GITGROUP="mygroup"
-GITPROJECT="myproject"
+GITUSER="$ADMIN"
+GITUSERMAIL="$EMAIL"
+GITGROUP="$PROJECT"
+GITPROJECT="$PROJECT"
 
 # prerequires
 /usr/bin/apt-get update
@@ -50,7 +50,7 @@ GITLAB_TOKEN=`/usr/bin/curl http://localhost/api/v3/session --data "login=root&p
 
 # Send info to ActiveMQ
 
-/usr/bin/curl -XPOST -d "body={TOKEN:$GITLAB_TOKEN,GITROOTPASS:$GITPASS,GITLABSTATE:$GITSTATE}" http://admin:admin@10.0.45.30:8161/api/message?destination=queue://SO.FACT
+/usr/bin/curl -XPOST -d "body={SERVICE:Gitlab,GITLABSTATE:$GITSTATE,GITURL:$GITURL,TOKEN:$GITLAB_TOKEN,GITROOTPASS:$GITPASS,CLIENT:$CLIENT,PROJECT:$PROJECT,ADMIN:$ADMIN,EMAIL:$EMAIL}" http://admin:admin@10.0.45.30:8161/api/message?destination=queue://SO.FACT
 
 
 # Clean
