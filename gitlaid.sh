@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
 GITPASS=`/usr/bin/tr -cd '[:alnum:]' < /dev/urandom | /usr/bin/fold -w16 | /usr/bin/head -n1`
-GITURL="http://$HOSTNAME-$VMID.one.ippon-hosting.net"
-GITUSER="$ADMIN"
-GITUSERMAIL="$EMAIL"
-GITGROUP="$PROJECT"
-GITPROJECT="$PROJECT"
+GITURL="http://$HOSTNAME.one.ippon-hosting.net"
+
+GITUSER="$3"
+GITUSERMAIL="$4"
+GITGROUP="$1"
+GITPROJECT="$2"
 
 # prerequires
 /usr/bin/apt-get update
