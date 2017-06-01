@@ -26,6 +26,7 @@ GITPROJECT="$2"
 /bin/sed -i "s,GITURL,"$GITURL"," /etc/gitlab/gitlab.rb
 /bin/sed -i "s,GITPASS,"$GITPASS"," /etc/gitlab/gitlab.rb
 /bin/sed -i "s,GITUSERMAIL,"$GITUSERMAIL",g" /etc/gitlab/gitlab.rb
+/bin/sed -i "s,_AT_,@,g" /etc/gitlab/gitlab.rb
 /bin/sed -i "s,GITUSER,"$GITUSER"," /etc/gitlab/gitlab.rb
 /bin/sed -i "s,GITPROJECT,"$GITPROJECT"," /etc/gitlab/gitlab.rb
 
