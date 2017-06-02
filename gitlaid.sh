@@ -58,7 +58,7 @@ GITLAB_TOKEN=`/usr/bin/curl http://localhost/api/v3/session --data "login=root&p
 
 # Send info to ActiveMQ
 
-/usr/bin/curl -XPOST -d "body={HOST:$HOSTNAME,SERVICE:Gitlab,GITLABSTATE:$GITSTATE,GITURL:$GITURL,TOKEN:$GITLAB_TOKEN,GITROOTPASS:$GITPASS,CLIENT:$GITGROUP,PROJECT:$GITPROJECT,ADMIN:$GITUSER,EMAIL:$GITUSERMAIL}" http://admin:admin@10.0.45.30:8161/api/message?destination=queue://SO.FACT
+/usr/bin/curl -XPOST -d "body={HOST:'$HOSTNAME',SERVICE:'Gitlab',GITLABSTATE:'$GITSTATE',GITURL:'$GITURL',TOKEN:'$GITLAB_TOKEN',GITROOTPASS:'$GITPASS',CLIENT:'$GITGROUP',PROJECT:'$GITPROJECT',ADMIN:'$GITUSER',EMAIL:'$GITUSERMAIL'}" http://admin:admin@10.0.45.30:8161/api/message?destination=queue://SO.FACT
 
 
 # Clean
