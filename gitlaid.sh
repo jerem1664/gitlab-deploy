@@ -4,7 +4,7 @@ GITPASS=`/usr/bin/tr -cd '[:alnum:]' < /dev/urandom | /usr/bin/fold -w16 | /usr/
 GITURL="http://$HOSTNAME.one.ippon-hosting.net"
 
 GITUSER="$3"
-GITUSERMAIL="$4"
+GITUSERMAIL=`echo $4 | /bin/sed 's/_AT_/@/'`
 GITGROUP="$1"
 GITPROJECT="$2"
 
@@ -21,12 +21,15 @@ GITPROJECT="$2"
 /usr/bin/dpkg -i gitlab-ce_9.1.3-ce.0_amd64.deb
 
 
-# wget gilab.rb and sed /etc/gitlab/gitlab.rb with VARS
-/usr/bin/wget http://jerem.unvrai.info/share/gitlab.rb -O /etc/gitlab/gitlab.rb
+# wget gilab.rb or/and sed /etc/gitlab/gitlab.rb with VARS
+#/usr/bin/wget http://jerem.unvrai.info/share/gitlab.rb -O /etc/gitlab/gitlab.rb
+/bin/sed -i '13s/^#\ //' gitlab.rb
+/bin/sed -i '43,47s/^#\ //' gitlab.rb
+/bin/sed -i '314s/^#\ //' gitlab.rb
+
 /bin/sed -i "s,GITURL,"$GITURL"," /etc/gitlab/gitlab.rb
 /bin/sed -i "s,GITPASS,"$GITPASS"," /etc/gitlab/gitlab.rb
 /bin/sed -i "s,GITUSERMAIL,"$GITUSERMAIL",g" /etc/gitlab/gitlab.rb
-/bin/sed -i "s,_AT_,@,g" /etc/gitlab/gitlab.rb
 /bin/sed -i "s,GITUSER,"$GITUSER"," /etc/gitlab/gitlab.rb
 /bin/sed -i "s,GITPROJECT,"$GITPROJECT"," /etc/gitlab/gitlab.rb
 
