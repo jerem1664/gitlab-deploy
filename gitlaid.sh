@@ -23,9 +23,9 @@ GITPROJECT="$2"
 
 # wget gilab.rb or/and sed /etc/gitlab/gitlab.rb with VARS
 #/usr/bin/wget http://jerem.unvrai.info/share/gitlab.rb -O /etc/gitlab/gitlab.rb
-/bin/sed -i '13s/^#\ //' /etc/gitlab.rb
-/bin/sed -i '43,47s/^#\ //' /etc/gitlab.rb
-/bin/sed -i '314s/^#\ //' /etc/gitlab.rb
+/bin/sed -i '13s/^#\ //' /etc/gitlab/gitlab.rb
+/bin/sed -i '43,47s/^#\ //' /etc/gitlab/gitlab.rb
+/bin/sed -i '314s/^#\ //' /etc/gitlab/gitlab.rb
 
 /bin/sed -i "s,GITURL,"$GITURL"," /etc/gitlab/gitlab.rb
 /bin/sed -i "s,GITPASS,"$GITPASS"," /etc/gitlab/gitlab.rb
